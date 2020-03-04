@@ -1,10 +1,15 @@
 package com.coolweather.zsyweather.db;
 
+import com.google.gson.annotations.SerializedName;
+
 import org.litepal.crud.LitePalSupport;
 
 public class City extends LitePalSupport {
+
     private int id;
+
     private String cityName;
+
     private int cityCode;
     private int provinceId;
 

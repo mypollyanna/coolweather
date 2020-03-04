@@ -3,6 +3,7 @@ package com.coolweather.zsyweather;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -123,7 +124,7 @@ public class ChooseAreaFragment extends Fragment {
         });
         queryProvinces();
     }
-    /**
+    /**http://guolin.tech/api/china
      * 查询所有的省，优先从数据库查询，如果没有查询到再去服务器上查询
      */
     private void queryProvinces(){
@@ -161,6 +162,7 @@ public class ChooseAreaFragment extends Fragment {
         }else{
             int provinceCode = selectedProvince.getProvinceCode();
             String address = "http://guolin.tech/api/china/" + provinceCode;
+            Log.d("url", address);
             queryFromServer(address, "city");
         }
     }
@@ -197,6 +199,7 @@ public class ChooseAreaFragment extends Fragment {
             @Override
             public void onResponse(Call call, Response response) throws IOException{
                 String responseText = response.body().string();
+                Log.d("Fragment", responseText);
                 boolean result = false;
                 if("province".equals(type)){
                     result = Utility.handleProvinceResponse(responseText);

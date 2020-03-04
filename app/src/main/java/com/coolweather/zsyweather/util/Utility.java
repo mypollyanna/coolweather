@@ -1,5 +1,6 @@
 package com.coolweather.zsyweather.util;
 
+import android.icu.util.LocaleData;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -41,6 +42,7 @@ public class Utility {
     public static boolean handleCityResponse(String response, int provinceId){
         if(!TextUtils.isEmpty(response)){
             try{
+                Log.d("Utility", response);
                 JSONArray allCities = new JSONArray(response);
                 for(int i = 0; i < allCities.length(); i++){
                     JSONObject cityObject = allCities.getJSONObject(i);
@@ -50,6 +52,7 @@ public class Utility {
                     city.setProvinceId(provinceId);
                     city.save();
                 }
+                return true;
             }catch (JSONException e){
                 e.getStackTrace();
             }
